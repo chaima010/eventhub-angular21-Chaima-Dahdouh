@@ -1,0 +1,55 @@
+
+@if (event) {
+  <section class="details-container">
+    <a routerLink="/events" class="back-link">← Retour aux événements</a>
+
+    <article class="details-card">
+      <img
+        class="details-image"
+        [src]="event.imageUrl"
+        [alt]="event.title"
+      >
+
+      <div class="details-content">
+        <span class="category">{{ event.category }}</span>
+
+        <h1>{{ event.title }}</h1>
+
+        <p class="description">{{ event.description }}</p>
+
+        <div class="info-item">
+          <span>📅</span>
+          <div>
+            <strong>Date</strong>
+            <p>{{ event.date | date:'EEEE d MMMM y' }}</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span>📍</span>
+          <div>
+            <strong>Lieu</strong>
+            <p>{{ event.place }}</p>
+          </div>
+        </div>
+
+        <div class="price-box">
+          <span>Prix de participation</span>
+          <strong>
+            {{ event.price === 0 ? 'Gratuit' : (event.price | currency:'TND':'symbol':'1.0-0') }}
+          </strong>
+        </div>
+
+        <a routerLink="/events" class="events-button">
+          Découvrir les autres événements
+        </a>
+      </div>
+    </article>
+  </section>
+} @else {
+  <section class="not-found">
+    <h1>Événement introuvable</h1>
+    <p>Cet événement n'existe pas ou n'est plus disponible.</p>
+    <a routerLink="/events" class="events-button">Retour aux événements</a>
+  </section>
+}

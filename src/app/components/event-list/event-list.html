@@ -1,0 +1,37 @@
+
+<section class="hero">
+  <p class="eyebrow">DÉCOUVREZ · PARTICIPEZ · PARTAGEZ</p>
+  <h1>Trouvez votre prochain événement</h1>
+  <p>Des expériences, des rencontres et des moments inoubliables vous attendent.</p>
+</section>
+
+<section class="events-section">
+  <div class="section-heading">
+    <div>
+      <h2>Événements à venir</h2>
+      <p>Découvrez les événements qui vous correspondent.</p>
+    </div>
+
+    <select
+      aria-label="Filtrer par catégorie"
+      [value]="selectedCategory()"
+      (change)="selectedCategory.set($any($event.target).value)"
+    >
+      @for (category of categories(); track category) {
+        <option [value]="category">{{ category }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="events-grid">
+    @for (event of filteredEvents(); track event.id) {
+      <app-event-card
+        [event]="event"
+        [isFavorite]="favorites.isFavorite(event.id)"
+        (favoriteToggled)="favorites.toggle($event)"
+      />
+    } @empty {
+      <p>Aucun événement dans cette catégorie.</p>
+    }
+  </div>
+</section>

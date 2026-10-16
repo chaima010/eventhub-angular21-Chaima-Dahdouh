@@ -1,0 +1,26 @@
+
+<section class="favorites-page">
+  <header class="favorites-header">
+    <h1>❤️ Mes favoris</h1>
+    <p>Retrouve ici tous les événements que tu as enregistrés.</p>
+    <span class="favorites-count">
+      {{ favoriteEvents().length }} événement(s)
+    </span>
+  </header>
+
+  <div class="events-grid">
+    @for (event of favoriteEvents(); track event.id) {
+      <app-event-card
+        [event]="event"
+        [isFavorite]="true"
+        (favoriteToggled)="removeFavorite($event)"
+      />
+    } @empty {
+      <div class="empty-favorites">
+        <h2>Aucun favori pour le moment</h2>
+        <p>Explore les événements et ajoute ceux qui te plaisent.</p>
+        <a routerLink="/events">Découvrir les événements</a>
+      </div>
+    }
+  </div>
+</section>

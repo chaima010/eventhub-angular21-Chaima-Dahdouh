@@ -1,0 +1,13 @@
+<header class="site-header">
+  <a class="logo" routerLink="/events">EventHub</a>
+
+  <nav>
+    <a routerLink="/events" routerLinkActive="active">Événements</a>
+    <a routerLink="/about" routerLinkActive="active">À propos</a>
+    <a class="favorites-link" routerLink="/favorites" routerLinkActive="active">
+      <span class="heart" aria-hidden="true">♥</span>
+      <span>Mes favoris</span>
+      <span class="favorites-count">{{ favorites.count() }}</span>
+    </a>
+  </nav>
+</header>
